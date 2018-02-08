@@ -10,21 +10,21 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
-        return "index.html";
+        return "index";
     }
 
     @RequestMapping(value = "/aboutUs", method = RequestMethod.GET)
     public String about() {
-        return "about.html";
+        return "about";
     }
 
     @RequestMapping(value = "/verification", method = RequestMethod.GET)
     public String verify() {
-        return "verify.html";
+        return "verify";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String register() {
-        return "register.html";
+        return "register";
     }
 }
