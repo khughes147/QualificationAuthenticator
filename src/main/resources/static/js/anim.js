@@ -55,8 +55,7 @@ window.scrollReveal = (function (window) {
 
       var self = this;
 
-  //  Check DOM for the data-scrollReveal attribute
-  //  and initialize all found elements.
+
       this.elems = Array.prototype.slice.call(this.docElem.querySelectorAll('[data-scrollReveal]'));
       this.elems.forEach(function (el, i) {
         self.update(el);

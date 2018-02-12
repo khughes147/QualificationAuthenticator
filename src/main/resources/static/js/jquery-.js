@@ -10349,3 +10349,7 @@ if ( typeof noGlobal === strundefined ) {
 return jQuery;
 
 }));
+
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})

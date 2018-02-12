@@ -8,7 +8,9 @@ body {
 	font-size:16px;
 	color:#777;
 	line-height:1.7;
+	padding-right: 0 !important
 }
+
 h1,h2,h3,h4,h5,h6 {
 	font-family:Roboto;
 	font-weight:700;
@@ -625,11 +627,14 @@ legend {
 	display:inline-block;
 }
 .footer {
+
 	background:#222;
 	color:#999;
+	width: 100%;
 	font-size:14px;
-	padding:60px 0 40px 0;
+	padding:5px 0 5px 0;
 	margin-top:0px;
+	bottom: 0;
 }
 ul,ol {
 	-moz-padding-start:0px;
@@ -642,10 +647,38 @@ ul,ol {
 .footernote {
 	font-size:30px;
 	color:#fff;
+	text-align: left;
+
 }
 .footer a {
 	color:#00bba7;
 }
+
+.footer ul li {
+     display: inline-block;
+     padding-top: 10px;
+ }
+
+ .footer ul li a {
+
+     font-size: 18px;
+ }
+
+ .col-md-3 {
+     width: 16.66666667%;
+     padding-top: 8px;
+     font-size: 20px;
+ }
+
+.modal-open {
+  padding-right: 0 !important;
+}
+
+.nav-link {
+   outline: none !important;
+   box-shadow: none;
+}
+
 #contactform input,#contactform textarea {
 	border:0px;
 	border:1px solid #eee;

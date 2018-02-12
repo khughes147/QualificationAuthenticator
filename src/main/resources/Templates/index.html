@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 
 <head>
@@ -36,7 +36,7 @@
 <header class="item header margin-top-0">
     <div class="wrapper">
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-fixed-top">
-            <!-- Brand/logo -->
+            <!-- logo -->
             <a class="navbar-brand" href="/">Authenti-Q</a>
 
             <!-- Links -->
@@ -48,7 +48,7 @@
                     <a class="nav-link" href="verification">Verify</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="registration">Register</a>
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#myModal">Register</a>
                 </li>
             </ul>
         </nav>
@@ -79,7 +79,7 @@
                     <span class="numberstep"><i class="fa fa-link"></i></span>
                     <h3 class="numbertext">Remove chance of fraud</h3>
                     <p>
-                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                        Online verification removes the chance of an applicant sending a forged certificate.
                     </p>
                 </div>
                 <!-- /.col-md-4 -->
@@ -90,7 +90,7 @@
                     <span class="numberstep"><i class="fa fa-users"></i></span>
                     <h3 class="numbertext">Remove third-parties</h3>
                     <p>
-                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                        Blockchain's decentralised nature means applicant's data can't be tampered with. It also removes the need for University admins.
                     </p>
                 </div>
                 <!-- /.col -->
@@ -99,9 +99,9 @@
             <div class="col-md-4 editContent">
                 <div class="col">
                     <span class="numberstep"><i class="fa fa-check"></i></span>
-                    <h3 class="numbertext">Instantly verification</h3>
+                    <h3 class="numbertext">Instant verification</h3>
                     <p>
-                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                        Authenti-Q verification takes a couple of minutes. No need to wait for receipt of paper certificates or confirmation emails from Universities.
                     </p>
                 </div>
             </div>
@@ -111,27 +111,7 @@
 
 
 
-<!-- FOOTER =============================-->
-<div class="footer text-center">
-    <div class="container">
-        <div class="row">
-            <p class="footernote">
-                Connect with Scorilo
-            </p>
-            <ul class="social-iconsfooter">
-                <li><a href="#"><i class="fa fa-phone"></i></a></li>
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-            </ul>
-            <p>
-                &copy; 2017 Your Website Name<br/>
-                Scorilo - Free template by <a href="https://www.wowthemes.net/">WowThemesNet</a>
-            </p>
-        </div>
-    </div>
-</div>
+
 
 
 
@@ -140,6 +120,40 @@
 <script src="js/jquery-.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/anim.js"></script>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Please enter a valid university admin email below.
+                </p>
+
+                <form role="form" method="post" >
+                    <div class="form-group">
+                        <label for="email"><span class="glyphicon glyphicon-user"></span> Username</label>
+                        <input type="text" class="form-control" id="email"  placeholder="Enter email"></input>
+                    </div>
+                    <button type="submit" value="result" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-check"></span> Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
 <script>
 //----HOVER CAPTION---//
 jQuery(document).ready(function ($) {
@@ -152,9 +166,37 @@ jQuery(document).ready(function ($) {
 		}
 	);
 });
+
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').focus()
+})
 </script>
 </body>
 
+<footer>
+    <!-- FOOTER =============================-->
+    <div class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <p class="col-md-4 footernote">
+                    Fast. Secure. Reliable.
+                </p>
+                <ul class = "col-md-5 list-inline">
+                    <li class="list-inline-item"><a href="/home"><u>Home</u></a> </li>
+                    <li class="list-inline-item"><a href="/aboutUs"><u>About</u></a></li>
+                    <li class="list-inline-item"><a href="/verification"><u>Verify</u></a></li>
+                    <li class="list-inline-item"><a href="#" data-toggle="modal" data-target="#myModal"><u>Register</u></a></li>
+
+                </ul>
+                <p class="col-md-3">
+                    B00658563
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</footer>
 
 </html>
 
