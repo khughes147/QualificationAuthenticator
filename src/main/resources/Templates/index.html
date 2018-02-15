@@ -120,6 +120,7 @@
 <script src="js/jquery-.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/anim.js"></script>
+<script src="js/emailSubmission.js"></script>
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,18 +137,37 @@
                     Please enter a valid university admin email below.
                 </p>
 
-                <form role="form" method="post" >
+                <form role="form" action="emailSubmission" method="post">
                     <div class="form-group">
                         <label for="email"><span class="glyphicon glyphicon-user"></span> Username</label>
-                        <input type="text" class="form-control" id="email"  placeholder="Enter email"></input>
+                        <input type="text" class="form-control" name="anEmail" ID="email" placeholder="Enter email"></input>
                     </div>
-                    <button type="submit" value="result" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-check"></span> Register</button>
+                    <button type="submit" id="submitButton" class="btn btn-default btn-success btn-block" ><span class="glyphicon glyphicon-check"></span> Register</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="SuccessModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Bootstrap Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 id="title" class="modal-title">Title</h4>
+            </div>
+            <div class="modal-body">
+                <p id="status"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 
@@ -170,6 +190,11 @@ jQuery(document).ready(function ($) {
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').focus()
 })
+
+
+
+
+
 </script>
 </body>
 

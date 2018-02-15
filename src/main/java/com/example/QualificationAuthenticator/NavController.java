@@ -28,8 +28,5 @@ public class NavController {
         return "verify";
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String register() {
-        return "register";
-    }
+
 }
