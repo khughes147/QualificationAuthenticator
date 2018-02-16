@@ -48,7 +48,7 @@
                     <a class="nav-link" href="verification">Verify</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" data-toggle="modal" data-target="#myModal">Register</a>
+                    <a class="nav-link" href="emailSubmission" data-toggle="modal" data-target="#myModal">Register</a>
                 </li>
             </ul>
         </nav>
@@ -137,12 +137,12 @@
                     Please enter a valid university admin email below.
                 </p>
 
-                <form role="form" action="emailSubmission" method="post">
+                <form role="form" id="emailForm" action="#" th:action="@{/emailSubmission}" th:object="${university}" method="post">
                     <div class="form-group">
-                        <label for="email"><span class="glyphicon glyphicon-user"></span> Username</label>
-                        <input type="text" class="form-control" name="anEmail" ID="email" placeholder="Enter email"></input>
+                        <label for="emailID"><span class="glyphicon glyphicon-user"></span> Username</label>
+                        <input type="text" class="form-control" id="emailID" th:field="*{email}" placeholder="Enter email"></input>
                     </div>
-                    <button type="submit" id="submitButton" class="btn btn-default btn-success btn-block" ><span class="glyphicon glyphicon-check"></span> Register</button>
+                    <button type="submit" value="Submit" id="submitButton"  class="btn btn-default btn-success btn-block" ><span class="glyphicon glyphicon-check"></span> Register</button>
                 </form>
             </div>
         </div>
@@ -190,6 +190,26 @@ jQuery(document).ready(function ($) {
 $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').focus()
 })
+
+function sendEmail()
+{
+        $.ajax(
+        {
+            type: "POST",
+            data: $("#emailForm").serialize(),
+            cache: false,
+            url: "/emailSubmission",
+            success: function(data)
+            {
+                alert("Your changes have been saved");
+            },
+            error: function()
+            {
+                alert("Error - Data not saved");
+            }
+
+        });
+}
 
 
 
