@@ -48,7 +48,7 @@
                     <a class="nav-link" href="verification">Verify</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="emailSubmission" data-toggle="modal" data-target="#myModal">Register</a>
+                    <a class="nav-link" href="" data-toggle="modal" data-target="#myModal">Register</a>
                 </li>
             </ul>
         </nav>
@@ -140,9 +140,10 @@
                 <form role="form" id="emailForm" action="#" th:action="@{/emailSubmission}" th:object="${university}" method="post">
                     <div class="form-group">
                         <label for="emailID"><span class="glyphicon glyphicon-user"></span> Username</label>
+                        <input type="hidden" th:field="*{id}" ></input>
                         <input type="text" class="form-control" id="emailID" th:field="*{email}" placeholder="Enter email"></input>
                     </div>
-                    <button type="submit" value="Submit" id="submitButton"  class="btn btn-default btn-success btn-block" ><span class="glyphicon glyphicon-check"></span> Register</button>
+                    <button type="button" onclick="sendEmail()" id="submitButton"  class="btn btn-default btn-success btn-block" data-dismiss="modal" ><span class="glyphicon glyphicon-check"></span> Register</button>
                 </form>
             </div>
         </div>
@@ -156,11 +157,12 @@
         <!-- Bootstrap Modal content-->
         <div class="modal-content">
             <div class="modal-header">
+                <h4 id="title" class="modal-title">Success</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 id="title" class="modal-title">Title</h4>
             </div>
             <div class="modal-body">
                 <p id="status"></p>
+                <p th:text=" 'An email has been successfully sent'"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -191,6 +193,10 @@ $('#myModal').on('shown.bs.modal', function () {
   $('#myInput').focus()
 })
 
+$('myModal').show().on('hidden', function() {
+    $('myModal').modal('hide')
+});
+
 function sendEmail()
 {
         $.ajax(
@@ -201,11 +207,12 @@ function sendEmail()
             url: "/emailSubmission",
             success: function(data)
             {
-                alert("Your changes have been saved");
+              $('#SuccessModal').modal('show')
+
             },
             error: function()
             {
-                alert("Error - Data not saved");
+
             }
 
         });

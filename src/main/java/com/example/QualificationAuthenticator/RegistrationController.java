@@ -1,7 +1,6 @@
 package com.example.QualificationAuthenticator;
 import com.example.QualificationAuthenticator.University;
-import com.sun.xml.internal.stream.Entity;
-import jdk.nashorn.internal.ir.RuntimeNode;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -25,17 +24,11 @@ import java.lang.Object;
 public class RegistrationController {
 
 
-    @RequestMapping(value = "/emailSubmission", method = RequestMethod.GET)
-    public String displayLogin(Model model) {
-        model.addAttribute("university", new University());
-        return "index";
-    }
-
-    @RequestMapping(value = "/emailSubmission", method = RequestMethod.POST)
-    public String emailSubmission(@ModelAttribute("university") University uni, BindingResult result, Model model)
+    @PostMapping("/emailSubmission")
+    public String emailSubmission(@ModelAttribute University university)
     {
-        model.addAttribute("university", uni);
-        System.out.println(uni.getEmail());
+
+        System.out.println(university.getEmail());
         return "index";
     }
 }
