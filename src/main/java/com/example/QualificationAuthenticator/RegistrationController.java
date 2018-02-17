@@ -25,9 +25,11 @@ public class RegistrationController {
 
 
     @PostMapping("/emailSubmission")
-    public String emailSubmission(@ModelAttribute University university)
+    public String emailSubmission(@ModelAttribute University university, BindingResult result)
     {
 
+        System.out.println(university.getUniName());
+        System.out.println(university.getAdminName());
         System.out.println(university.getEmail());
         return "index";
     }

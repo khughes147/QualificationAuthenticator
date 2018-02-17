@@ -127,21 +127,29 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                <h3 class="modal-title" id="exampleModalLabel">Register</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p>
-                    Please enter a valid university admin email below.
+                    Please enter valid University Credentials below
                 </p>
 
                 <form role="form" id="emailForm" action="#" th:action="@{/emailSubmission}" th:object="${university}" method="post">
                     <div class="form-group">
-                        <label for="emailID"><span class="glyphicon glyphicon-user"></span> Username</label>
+
                         <input type="hidden" th:field="*{id}" ></input>
-                        <input type="text" class="form-control" id="emailID" th:field="*{email}" placeholder="Enter email"></input>
+                        <p>
+                            <label for="emailID"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                            <input type="text" class="form-control" id="emailID" field="email" th:field="*{email}" placeholder="Enter email"></input></p>
+                        <p>
+                            <label for="uniName"><span class="glyphicon glyphicon-book"></span> University Name</label>
+                            <input type="text" class="form-control" id="uniName" field="uniName" th:field="*{uniName}" placeholder="Enter University Name"></input></p>
+                        <p>
+                            <label for="adminName"><span class="glyphicon glyphicon-user"></span> Administrator name</label>
+                            <input type="text" class="form-control" id="adminName" field="adminName" th:field="*{adminName}" placeholder="Enter Aministrator Name"></input></p>
                     </div>
                     <button type="button" onclick="sendEmail()" id="submitButton"  class="btn btn-default btn-success btn-block" data-dismiss="modal" ><span class="glyphicon glyphicon-check"></span> Register</button>
                 </form>
@@ -162,7 +170,8 @@
             </div>
             <div class="modal-body">
                 <p id="status"></p>
-                <p th:text=" 'An email has been successfully sent'"/>
+                <p th:text=" 'We need to inverstigate the authenticity of your University.'"/>
+                <p th:text=" 'You will recieve an email regarding the succss of your registration as soon as possible.'"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -210,14 +219,13 @@ function sendEmail()
               $('#SuccessModal').modal('show')
 
             },
-            error: function()
+            error: function(data)
             {
 
             }
 
         });
 }
-
 
 
 
