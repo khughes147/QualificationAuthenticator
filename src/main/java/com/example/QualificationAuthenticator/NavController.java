@@ -32,5 +32,15 @@ public class NavController {
         return "verify";
     }
 
+    @RequestMapping(value = "/administration", method = RequestMethod.GET)
+    public String admin() {
+        return "admin";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
 
 }
