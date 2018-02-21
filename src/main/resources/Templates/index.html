@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <title>Q-Authenticator</title>
+    <title>Authenti-Q</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
@@ -120,7 +120,8 @@
 <script src="js/jquery-.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/anim.js"></script>
-<script src="js/emailSubmission.js"></script>
+
+
 
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -143,7 +144,7 @@
                         <input type="hidden" th:field="*{id}" ></input>
                         <p>
                             <label for="emailID"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-                            <input type="text" class="form-control" id="emailID" field="email" th:field="*{email}" placeholder="Enter email"></input></p>
+                            <input type="email" class="form-control" id="emailID" field="email" th:field="*{email}" placeholder="Enter email"></input></p>
                         <p>
                             <label for="uniName"><span class="glyphicon glyphicon-book"></span> University Name</label>
                             <input type="text" class="form-control" id="uniName" field="uniName" th:field="*{uniName}" placeholder="Enter University Name"></input></p>
@@ -170,7 +171,7 @@
             </div>
             <div class="modal-body">
                 <p id="status"></p>
-                <p th:text=" 'We need to inverstigate the authenticity of your University.'"/>
+                <p th:text=" 'We need to investigate the authenticity of your University.'"/>
                 <p th:text=" 'You will recieve an email regarding the succss of your registration as soon as possible.'"/>
             </div>
             <div class="modal-footer">
@@ -208,6 +209,8 @@ $('myModal').show().on('hidden', function() {
 
 function sendEmail()
 {
+
+
         $.ajax(
         {
             type: "POST",
@@ -227,7 +230,60 @@ function sendEmail()
         });
 }
 
+$(document).ready(function(){
+//Write on Form
+	$('#uniName').on('input', function() {
+		var input=$(this);
+		var is_name=input.val();
+		if(is_name){input.removeClass("is-invalid").addClass("is-valid");}
+		else{input.removeClass("is-valid").addClass("is-invalid");}
+	});
+	//check to make sure its an email
+	//if @ not included it wont allow the form to be submitted.
+	$('#emailID').on('input', function() {
+		var input=$(this);
+		var re = /^[\w]+[\w.%+-]*@[\w.-]+\.ac\.uk$/;
+		var is_email=re.test(input.val());
+		if(is_email){input.removeClass("is-invalid").addClass("is-valid");}
+		else{input.removeClass("is-valid").addClass("is-invalid");}
+	});
+	$('#adminName').keyup(function(event) {
+		var input=$(this);
+		var message=$(this).val();
+		if(message){input.removeClass("is-invalid").addClass("is-valid"),
+		$('p.adminErrorMessage').remove();}
+		else{input.removeClass("is-valid").addClass("is-invalid"),
+		$('p.adminErrorMessage').remove(),
+		$('#adminName').after('<p class="adminErrorMessage danger">Admin name can\'t be empty.</p>');}
+	});
 
+//submit form validation
+$("#contact_submit button").click(function(event){
+	var form_data=$("#contact").serializeArray();
+	var error_free=true;
+	for (var input in form_data){
+		var element=$("#contact_"+form_data[input]['name']);
+		var valid=element.hasClass("is-valid");
+		var error_element=$("span", element.parent());
+		//form_data.removeclass("error_show").addClass("reset");
+		if (!valid){error_element.removeClass("error").addClass("error_show"); error_free=false;}
+		else{error_element.removeClass("error_show").addClass("error");}
+	}
+	if (!error_free){
+		event.preventDefault();
+	}
+	else{
+		alert('Your form has now been submitted. ~ Tasty Foods');
+		return false
+		textfield.getStyleClass().clear();
+		textfield.getStyleClass().addAll("text-field", "text-input");
+		//$(".error_show").hide();
+
+	};
+		//$(".input").reset();
+		  //    $(".input").css("background-color", "#ffffff");
+});
+});
 
 
 </script>
