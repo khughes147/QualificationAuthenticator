@@ -19,6 +19,29 @@ h1,h2,h3,h4,h5,h6 {
 	list-style:none;
 	line-height:inherit;
 }
+
+#loginFormContainer{
+    padding-top:100px;
+    padding-bottom:100px;
+}
+
+.loginPage {
+ text-align: center;
+}
+
+.loginWarning{
+color: #ff0000;
+}
+
+#passwordLabel{
+padding-right:2px;
+}
+
+#adminNavItem{
+color: #ffffff;
+background-color:transparent !important;
+}
+
 .text-left {
 	text-align:left !Important;
 }
@@ -528,11 +551,6 @@ font-size:14px;
 color: #f90404;
 }
 
-.uniErrorMessage{
-
-font-size:14px;
-color: #f90404;
-}
 
 
 .myaccountsection #edd_login_form {
