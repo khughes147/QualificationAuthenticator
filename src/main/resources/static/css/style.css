@@ -33,8 +33,27 @@ h1,h2,h3,h4,h5,h6 {
 color: #ff0000;
 }
 
+#adminWelcomeMessage{
+padding-top: 70px;
+padding-bottom: 20px;
+}
+
 #passwordLabel{
 padding-right:2px;
+}
+
+#addUniversityButton{
+
+background-color:#07d104;
+}
+
+#removeUniversityButton{
+
+background-color:#db2b2b;
+}
+
+#adminServicesBody{
+text-align: center;
 }
 
 #adminNavItem{

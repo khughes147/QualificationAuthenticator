@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8"/>
     <title>Register</title>
@@ -28,7 +28,7 @@
 
 
 </head>
-<body>
+<body id="adminServicesBody">
 <div class="container-fluid" id="header">
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark navbar-fixed-top">
@@ -50,13 +50,21 @@
     </nav>
 </div>
 
-<div><p>Hello World</p></div>
+<div class="container-fluid" id="adminWelcomeMessage">
+    <h2>Welcome to the admin panel, please select an option</h2>
+</div>
+<div class="container-fluid" id="adminOptions">
+    <button type="button" th:hidden="*{addClicked}==true" id="addUniversityButton" class="btn btn-default">Add a University</button>
+    <button type="button" href="admin/remove" id="removeUniversityButton" class="btn btn-default">Remove a University</button>
 
+    <p th:if="*{addClicked} == true"
+       th:text="You selected add user"></p>
+</div>
 
 
 
 <!-- FOOTER =============================-->
-<div class="footer text-center">
+<div class="footer text-center navbar-fixed-bottom">
     <div class="container">
         <div class="row">
             <p class="col-md-4 footernote">
