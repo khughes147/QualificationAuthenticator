@@ -570,6 +570,10 @@ font-size:14px;
 color: #f90404;
 }
 
+.modal-body{
+
+text-align: left !important;
+}
 
 
 .myaccountsection #edd_login_form {

@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class NavController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model model) {
+    public String index(Model modelA) {
 
-        model.addAttribute("university", new University());
+        modelA.addAttribute("university", new University());
         return "index";
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("university", new University());
         return "index";
     }
 
@@ -33,7 +34,8 @@ public class NavController {
     }
 
     @RequestMapping(value = "/administration", method = RequestMethod.GET)
-    public String admin() {
+    public String admin(Model model) {
+        model.addAttribute("university", new University());
         return "admin";
     }
 
