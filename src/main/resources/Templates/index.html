@@ -147,7 +147,7 @@
                 <form role="form" id="emailForm" action="#" th:action="@{/emailSubmission}" th:object="${university}" method="post">
                     <div class="form-group">
 
-                        <input type="hidden" class="is-valid" th:field="*{id}" ></input>
+
                         <p>
                             <label for="emailID"><span class="glyphicon glyphicon-envelope"></span> Email</label>
                             <input type="email" class="form-control" id="emailID" th:field="*{email}" placeholder="Enter email"/></p>

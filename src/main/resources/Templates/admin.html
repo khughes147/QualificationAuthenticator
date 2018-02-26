@@ -55,10 +55,12 @@
 </div>
 <div class="container-fluid" id="adminOptions">
     <button type="button" data-toggle="modal" data-target="#add_myModal" id="addUniversityButton" class="btn btn-default">Add a University</button>
-    <button type="button" href="admin/remove" id="removeUniversityButton" class="btn btn-default">Remove a University</button>
+    <button type="button" href="#" onclick="listUniversities()" id="removeUniversityButton" class="btn btn-default">Remove a University</button>
 </div>
 
+<div id="uniListTable">
 
+</div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -76,7 +78,7 @@
                 <form role="form" id="emailForm" action="#" th:action="@{/emailSubmission}" th:object="${university}" method="post">
                     <div class="form-group">
 
-                        <input type="hidden" class="is-valid" th:field="*{id}" ></input>
+
                         <p>
                             <label for="emailID"><span class="glyphicon glyphicon-envelope"></span> Email</label>
                             <input type="email" class="form-control" id="emailID" th:field="*{email}" placeholder="Enter email"/></p>
@@ -134,7 +136,7 @@
                 <form role="form" id="addUniForm" action="#" th:action="@{/addUniversity}" th:object="${university}" method="post">
                     <div class="form-group">
 
-                        <input type="hidden" class="is-valid" th:field="*{id}" ></input>
+
                         <p>
                             <label for="add_emailID"><span class="glyphicon glyphicon-envelope"></span> Email</label>
                             <input type="email" class="form-control" id="add_emailID" th:field="*{email}" placeholder="Enter email"/></p>
@@ -198,6 +200,7 @@
 <script src="js/jquery-.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/anim.js"></script>
+<script src="js/listUniversities.js"></script>
 </body>
 
 

@@ -25,6 +25,12 @@ h1,h2,h3,h4,h5,h6 {
     padding-bottom:100px;
 }
 
+#removeUniHeader{
+padding-top:20px;
+font-weight: bold;
+
+}
+
 .loginPage {
  text-align: center;
 }
@@ -47,9 +53,30 @@ padding-right:2px;
 background-color:#07d104;
 }
 
+#uniListTable{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.myTableHeader{
+text-align:center;
+padding-left: 10px;
+padding-right:10px;
+}
+
 #removeUniversityButton{
 
 background-color:#db2b2b;
+}
+
+#removeUniversityButtonSingle{
+
+background-color:#db2b2b;
+
+}
+
+#uniListButton{
+padding-left:10px;
 }
 
 #adminServicesBody{
@@ -509,6 +536,9 @@ table#edd_purchase_receipt td,table#edd_purchase_receipt th,table#edd_purchase_r
 	border:1px solid #eee;
 	padding:10px;
 }
+
+
+
 #edd_checkout_cart {
 	text-align:left;
 	width:100%;

@@ -69,6 +69,7 @@ $("#add_submitButton").click(function(event){
     if ($('#add_adminID').hasClass('form-control is-valid')){
         if ($('#add_uniID').hasClass('form-control is-valid')){
             if ($('#add_emailID').hasClass('form-control is-valid')){
+             $("#uniListTable").hide();
             sendEmailAdmin();
             }else{
             alert("Please ensure all fields are completed correctly."),
