@@ -2,7 +2,7 @@ $('myModal').show().on('hidden', function() {
     $('myModal').modal('hide')
 });
 
-function sendEmail()
+function sendEmailAdmin()
 {
 
 
@@ -69,7 +69,7 @@ $("#add_submitButton").click(function(event){
     if ($('#add_adminID').hasClass('form-control is-valid')){
         if ($('#add_uniID').hasClass('form-control is-valid')){
             if ($('#add_emailID').hasClass('form-control is-valid')){
-            sendEmail();
+            sendEmailAdmin();
             }else{
             alert("Please ensure all fields are completed correctly."),
             event.stopPropagation();

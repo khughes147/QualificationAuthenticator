@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RegistrationController {
 
+    private University[] uniArray;
+    private int uniCount = 0;
 
     @Autowired
     EmailService regServ;
@@ -28,7 +30,16 @@ public class RegistrationController {
     public String addUniversity(@ModelAttribute University university, BindingResult result)
     {
         System.out.println(university.getEmail());
+
         regServ.sendSimpleMessage(university.getEmail(), "Registration Success!!", "Hi " + university.getAdminName() + ",\n\nThis email is to confirm that " + university.getUniName() +  " has successfully been added to the Authenti-Q service.\n\nMany thanks,\n\nAuthenti-Q" );
+        uniArray[uniCount] = university;
+        uniCount++;
+
+        for(int i=0; i<uniCount; i++){
+
+            System.out.println(uniArray[i].getEmail());
+
+        }
         return "admin";
     }
 }
