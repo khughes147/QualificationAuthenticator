@@ -10,9 +10,9 @@ function listUniversities()
             statusCode: {
                   200: function( data ) {
                   $("#uniListTable").show();
-                   var output="<h5 id='removeUniHeader'> Select a University to remove </h5> <table id='uniListTable'><thead><th class='myTableHeader'>Admin Email</th><th class='myTableHeader'>University</th><th class='myTableHeader'>Admin Name</th><th class='myTableHeader'>Unique Key</th></thead><tbody>";
+                   var output="<h5 id='removeUniHeader'> Select a University to remove </h5> <table id='uniListTable'><thead><th class='myTableHeader'>Admin Email</th><th class='myTableHeader'>University</th><th class='myTableHeader'>Admin Name</th><th class='myTableHeader'>Unique Key</th><th>Verified Status</th></thead><tbody>";
                                     $.each(data, function(i, item){
-                                       output += "<tr>";
+                                       output += "<tr class='table-row'>";
                                        $.each(item, function(p, value){
                                          output += "<td class='" + p + "'>" + value + "</td>";
                                        });
@@ -30,10 +30,44 @@ function listUniversities()
         });
 }
 
+function listUnverifiedUniversities()
+{
+
+
+        $.ajax(
+        {
+            type: "GET",
+            cache: false,
+            url: "/listUnverifiedUniversities",
+            statusCode: {
+                  200: function( data ) {
+                  $("#uniListTable").show();
+                   var output="<h5 id='removeUniHeader'> Universities awaiting verification </h5> <table id='uniListTable'><thead><th class='myTableHeader'>Admin Email</th><th class='myTableHeader'>University</th><th class='myTableHeader'>Admin Name</th><th class='myTableHeader'>Unique Key</th><th>Verified Status</th></thead><tbody>";
+                                    $.each(data, function(i, item){
+                                       output += "<tr class='table-row'>";
+                                       $.each(item, function(p, value){
+                                         output += "<td class='" + p + "'>" + value + "</td>";
+                                       });
+                                       output += "<td id='uniListButton'> <button type='button' href='#' onclick='verifyUni()' id='addUniversityButton' class='btn btn-default'>Verify</button> </td> </tr>";
+                                    });
+                                    output+="</tbody></table></div>";
+                                    $("#uniListTable").html(output);
+                  },
+                  204: function( data ) {
+                  $("#uniListTable").show();
+                  $("#uniListTable").html("<h5> No Universities awaiting verification </h5>");
+                  }
+
+        }
+        });
+}
+
 function removeUni(){
 
 
- var email = $(".email").text();
+ var email = $(event.target).closest('.table-row').find('.email').text();
+ $(event.target).parent().parent().remove();
+
 
 $.ajax(
         {
@@ -41,6 +75,33 @@ $.ajax(
             data: jQuery.param({"id" : email}),
             cache: false,
             url: "/deleteUni",
+
+            success: function(data)
+            {
+
+            },
+            error: function(data)
+            {
+
+            }
+
+        });
+
+}
+
+function verifyUni(){
+
+
+ var email = $(event.target).closest('.table-row').find('.email').text();
+ $(event.target).parent().parent().remove();
+
+
+$.ajax(
+        {
+            type: "POST",
+            data: jQuery.param({"id" : email}),
+            cache: false,
+            url: "/verifyUni",
 
             success: function(data)
             {

@@ -14,6 +14,7 @@ public class University {
     private String uniName;
     private String adminName;
     private String key;
+    private boolean verified = false;
 
     public String getEmail() { return email; }
 
@@ -40,6 +41,10 @@ public class University {
     public String getKey(){
         return key;
     }
+
+    public boolean isVerified(){ return verified;}
+
+    public void setVerified(Boolean verified) { this.verified = verified;}
 
     public void generateKey(){
 
