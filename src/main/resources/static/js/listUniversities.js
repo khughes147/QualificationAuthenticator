@@ -14,7 +14,7 @@ function listUniversities()
                                     $.each(data, function(i, item){
                                        output += "<tr>";
                                        $.each(item, function(p, value){
-                                         output += "<td class='value'>" + value + "</td>";
+                                         output += "<td class='" + p + "'>" + value + "</td>";
                                        });
                                        output += "<td id='uniListButton'> <button type='button' href='#' onclick='removeUni()' id='removeUniversityButtonSingle' class='btn btn-default'>Remove</button> </td> </tr>";
                                     });
@@ -32,12 +32,13 @@ function listUniversities()
 
 function removeUni(){
 
-var ref = $(this).closest('tr').children('td.data').text();
+
+ var email = $(".email").text();
 
 $.ajax(
         {
             type: "POST",
-            data: {"id" : ref},
+            data: jQuery.param({"id" : email}),
             cache: false,
             url: "/deleteUni",
 

@@ -13,6 +13,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "/home", "/aboutUs", "/verification", "/emailSubmission", "/css/**","/images/**","/js/**", "/fonts/**").permitAll()
                 .anyRequest().authenticated()
@@ -31,4 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("admin").password("ethereum").roles("ADMIN");
     }
+
 }
+
+

@@ -3,6 +3,7 @@ package com.example.QualificationAuthenticator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -60,10 +61,11 @@ public class RegistrationController {
 
     }
 
-    @PostMapping("/deleteUni")
-    public String deleteUni(@RequestParam String id)
-    {
-        System.out.println(id);
+    @RequestMapping(value = "/deleteUni", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    String Submit(@RequestParam("id") String name) {
+
+        System.out.println(name);
         return "admin";
     }
 }
