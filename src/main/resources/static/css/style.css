@@ -52,7 +52,15 @@ padding-right:2px;
 
 #addUniversityButton{
 
+background-color:#e58327;
+}
+
+#confirmUniversityButton{
 background-color:#07d104;
+}
+
+#rejectUniversityButton{
+background-color:#db2b2b;
 }
 
 #uniListTable{
@@ -68,7 +76,8 @@ padding-right:10px;
 
 #removeUniversityButton{
 
-background-color:#db2b2b;
+background-color:#07d104;
+
 }
 
 #removeUniversityButtonSingle{

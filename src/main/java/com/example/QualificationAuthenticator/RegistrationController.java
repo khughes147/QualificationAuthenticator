@@ -100,11 +100,31 @@ public class RegistrationController {
 
             if(unverifiedUniversityArrayList.get(i).getEmail().equals(email)){
                 unverifiedUniversityArrayList.get(i).setVerified(true);
+                unverifiedUniversityArrayList.get(i).generateKey();
                 universityArrayList.add(unverifiedUniversityArrayList.get(i));
+                //regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Registration Success!!", "Hi " + university.getAdminName() + ",\n\nThis email is to confirm that " + university.getUniName() +  " has successfully been added to the Authenti-Q service.\n\nMany thanks,\n\nAuthenti-Q" );
+
             }
 
         }
         return "admin";
     }
+
+    @RequestMapping(value = "/rejectUni", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    String rejectUni(@RequestParam("id") String email) {
+
+        for(int i=0; i<unverifiedUniversityArrayList.size(); i++){
+
+            if(unverifiedUniversityArrayList.get(i).getEmail().equals(email)){
+                unverifiedUniversityArrayList.remove(i);
+                //regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Publishing privileges removed", "Hi " + unverifiedUniversityArrayList.get(i).getAdminName() + ",\n\nThis email is to confirm that " + unverifiedUniversityArrayList.get(i).getUniName() +  " has been removed from the Authenti-Q service.\n\nMany thanks,\n\nAuthenti-Q" );
+
+            }
+
+        }
+        return "admin";
+    }
+
 }
 
