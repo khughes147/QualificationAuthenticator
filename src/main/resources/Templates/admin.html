@@ -119,61 +119,6 @@
 </div>
 
 
-<div class="modal fade" id="add_myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="add_exampleModalLabel">Add University</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>
-                    Enter the details of the new University below
-                </p>
-
-                <form role="form" id="addUniForm" action="#" th:action="@{/addUniversity}" th:object="${university}" method="post">
-                    <div class="form-group">
-
-
-                        <p>
-                            <label for="add_emailID"><span class="glyphicon glyphicon-envelope"></span> Email</label>
-                            <input type="email" class="form-control" id="add_emailID" th:field="*{email}" placeholder="Enter email"/></p>
-                        <p>
-                            <label for="add_emailID"><span class="glyphicon glyphicon-book"></span> University Name</label>
-                            <input type="text" class="form-control" id="add_uniID"  th:field="*{uniName}" placeholder="Enter University Name"/></p>
-                        <p>
-                            <label for="add_emailID"><span class="glyphicon glyphicon-user"></span> Administrator name</label>
-                            <input type="text" class="form-control" id="add_adminID"  th:field="*{adminName}" placeholder="Enter Aministrator Name"/></p>
-                    </div>
-                    <button type="button" id="add_submitButton" class="btn btn-default btn-success btn-block" data-dismiss="modal" ><span class="glyphicon glyphicon-check"></span>Add</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="addSuccessModal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Bootstrap Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="add_title" class="modal-title">Success</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p id="status"></p>
-                <div>University has been added.</div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- FOOTER =============================-->
 <div class="footer text-center navbar-fixed-bottom">
     <div class="container">

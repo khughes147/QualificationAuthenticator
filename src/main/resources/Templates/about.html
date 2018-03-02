@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -55,7 +55,62 @@
     </nav>
 </div>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Register</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Please enter valid University Credentials below
+                </p>
 
+                <form role="form" id="emailForm" action="#" th:action="@{/emailSubmission}" th:object="${university}" method="post">
+                    <div class="form-group">
+
+
+                        <p>
+                            <label for="emailID"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                            <input type="email" class="form-control" id="emailID" th:field="*{email}" placeholder="Enter email"/></p>
+                        <p>
+                            <label for="uniID"><span class="glyphicon glyphicon-book"></span> University Name</label>
+                            <input type="text" class="form-control" id="uniID"  th:field="*{uniName}" placeholder="Enter University Name"/></p>
+                        <p>
+                            <label for="adminID"><span class="glyphicon glyphicon-user"></span> Administrator name</label>
+                            <input type="text" class="form-control" id="adminID"  th:field="*{adminName}" placeholder="Enter Aministrator Name"/></p>
+                    </div>
+                    <button type="button" id="submitButton" class="btn btn-default btn-success btn-block" data-dismiss="modal" ><span class="glyphicon glyphicon-check"></span> Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="SuccessModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Bootstrap Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="title" class="modal-title">Success</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="status"></p>
+                <p th:text=" 'We need to investigate the authenticity of your University.'"/>
+                <p th:text=" 'You will recieve an email regarding the succss of your registration as soon as possible.'"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

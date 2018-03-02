@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class NavController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Model modelA) {
+    public String index(Model model) {
 
-        modelA.addAttribute("university", new University());
+        model.addAttribute("university", new University());
         return "index";
     }
 
@@ -25,12 +25,14 @@ public class NavController {
     }
 
     @RequestMapping(value = "/aboutUs", method = RequestMethod.GET)
-    public String about() {
+    public String about(Model model) {
+        model.addAttribute("university", new University());
         return "about";
     }
 
     @RequestMapping(value = "/verification", method = RequestMethod.GET)
-    public String verify() {
+    public String verify(Model model) {
+        model.addAttribute("university", new University());
         return "verify";
     }
 
@@ -41,8 +43,15 @@ public class NavController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
+    public String login(Model model) {
+        model.addAttribute("university", new University());
         return "login";
+    }
+
+    @RequestMapping(value = "/publish", method = RequestMethod.GET)
+    public String publish(Model model) {
+        model.addAttribute("university", new University());
+        return "publish";
     }
 
 
