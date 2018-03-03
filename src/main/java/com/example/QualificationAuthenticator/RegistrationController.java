@@ -20,6 +20,11 @@ public class RegistrationController {
     private ArrayList<University> universityArrayList = new ArrayList<University>();
     private ArrayList<University> unverifiedUniversityArrayList = new ArrayList<University>();
 
+    public ArrayList<University> getUniversityArrayList() {
+        return universityArrayList;
+    }
+
+
     @Autowired
     EmailService regServ;
 

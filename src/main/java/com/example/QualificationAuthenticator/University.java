@@ -1,8 +1,6 @@
 package com.example.QualificationAuthenticator;
 
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 import java.security.MessageDigest;
 import java.util.UUID;
 
