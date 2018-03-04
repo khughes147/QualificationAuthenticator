@@ -43,6 +43,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="verification">Verify</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="publish">Publish</a>
+            </li>
             <li class="nav-item; active">
                 <a class="nav-link" data-toggle="modal" data-target="#myModal">Register</a>
             </li>
@@ -109,10 +112,9 @@
 
 <h3 id="publishHeader">Uploading a student record</h3>
 <p id="publishMessage">Complete the form below with the graduating student's details. Only Universities with a valid key can upload a record.</p>
-<div class="Notification upon submission"></div>
-<div class="loginWarning" th:if="${param.error}">
-    Please complete all fields
-</div>
+<p class="successfulSubmission" th:text="${successMessage}"></p>
+<p class="failedSubmission" th:text="${errorMessage}"></p>
+
 <div class="container" id="publishDataContainer">
     <form id="publishForm" action="#" th:action="@{/publishForm}" th:object="${record}" method="post">
         <div class="form-group">

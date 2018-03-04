@@ -16,28 +16,20 @@ import java.util.*;
 @Controller
 public class recordController {
 
+    private String returnPage;
+
     @PostMapping("/publishForm")
-    public String emailSubmission(@ModelAttribute StudentRecord record, BindingResult result, Model model)
+    public String publish(@ModelAttribute StudentRecord record, BindingResult result, Model model)
     {
         RegistrationController regCon = new RegistrationController();
         ArrayList<University> universityArrayList = regCon.getUniversityArrayList();
-
-
-
         for(int i=0; i<universityArrayList.size(); i++){
-
             if (universityArrayList.get(i).getKey().equals(record.getUniversityKey())){
-
-                System.out.println("Success");
+                model.addAttribute("successMessage", "Successfully uploaded record!");
             }else{
-                System.out.println("Fail");
-
+                model.addAttribute("errorMessage", "Invalid University Key!");
             }
-
         }
-
-
-
         model.addAttribute("record", new StudentRecord());
         model.addAttribute("university", new University());
         return "publish";

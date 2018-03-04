@@ -31,6 +31,18 @@ font-weight: bold;
 
 }
 
+.successfulSubmission{
+
+text-align: center;
+color: #05b20b;
+}
+
+.failedSubmission{
+
+text-align: center;
+color: #d30202;
+}
+
 #publishDataContainer{
 
 padding-top:40px;
