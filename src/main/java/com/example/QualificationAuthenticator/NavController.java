@@ -50,10 +50,12 @@ public class NavController {
 
     @RequestMapping(value = "/publish", method = RequestMethod.GET)
     public String publish(Model model) {
-        model.addAttribute("university", new University());
         model.addAttribute("record", new StudentRecord());
+        model.addAttribute("university", new University());
         return "publish";
     }
+
+
 
 
 

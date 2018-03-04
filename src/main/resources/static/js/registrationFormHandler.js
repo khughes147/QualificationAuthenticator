@@ -99,11 +99,5 @@ $("#submitButton").click(function(event){
     event.stopPropagation();
     event.preventDefault();};
 
-
-
-
-
-
-
 });
 });

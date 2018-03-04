@@ -33,10 +33,21 @@ font-weight: bold;
 
 #publishDataContainer{
 
-padding-top:75px;
+padding-top:40px;
+padding-bottom: 75px;
+width: 60%;
 }
 
+#publishHeader{
 
+padding-top:60px;
+
+}
+
+#publishMessage{
+padding-top:5px;
+font-size: 20px;
+}
 
 .loginPage {
  text-align: center;
@@ -823,3 +834,4 @@ ul,ol {
 		color: #00bba7;
 	}
 }
+

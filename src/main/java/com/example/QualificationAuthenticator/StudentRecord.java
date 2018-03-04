@@ -4,6 +4,7 @@ public class StudentRecord {
 
     private String studentName;
     private String studentID;
+    private String studentEmail;
     private String universityName;
     private String courseName;
     private String startDate;
@@ -71,6 +72,15 @@ public class StudentRecord {
         return universityKey;
     }
 
+    public String getStudentEmail() {
+        return studentEmail;
+    }
 
+    public void setUniversityKey(String universityKey) {
+        this.universityKey = universityKey;
+    }
 
+    public void setStudentEmail(String studentEmail) {
+        this.studentEmail = studentEmail;
+    }
 }

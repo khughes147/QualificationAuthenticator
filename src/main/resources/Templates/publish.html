@@ -107,26 +107,32 @@
     </div>
 </div>
 
-
+<h3 id="publishHeader">Uploading a student record</h3>
+<p id="publishMessage">Complete the form below with the graduating student's details. Only Universities with a valid key can upload a record.</p>
 <div class="Notification upon submission"></div>
-
-<div class="container-fluid" id="publishDataContainer">
-    <form role="form" id="publishForm" action="#" th:action="@{/publishForm}" th:object="${record}" method="post">
+<div class="loginWarning" th:if="${param.error}">
+    Please complete all fields
+</div>
+<div class="container" id="publishDataContainer">
+    <form id="publishForm" action="#" th:action="@{/publishForm}" th:object="${record}" method="post">
         <div class="form-group">
 
 
             <p>
                 <label for="studentNameID"><span class="glyphicon glyphicon-envelope"></span> Student Name</label>
-                <input type="email" class="form-control" id="studentNameID" th:field="*{studentName}" placeholder="Enter email"/></p>
+                <input type="text" class="form-control" id="studentNameID" th:field="*{studentName}" placeholder="Enter email"/></p>
             <p>
                 <label for="studentID"><span class="glyphicon glyphicon-book"></span> Student ID</label>
                 <input type="text" class="form-control" id="studentID"  th:field="*{studentID}" placeholder="Enter University Name"/></p>
+            <p>
+                <label for="studentEmail"><span class="glyphicon glyphicon-book"></span> Student Email</label>
+                <input type="email" class="form-control" id="studentEmail"  th:field="*{studentEmail}" placeholder="Enter student's email"/></p>
             <p>
                 <label for="uniNameID"><span class="glyphicon glyphicon-user"></span> University name</label>
                 <input type="text" class="form-control" id="uniNameID"  th:field="*{universityName}" placeholder="Enter Aministrator Name"/></p>
             <p>
                 <label for="courseNameID"><span class="glyphicon glyphicon-envelope"></span> Course name</label>
-                <input type="email" class="form-control" id="courseNameID" th:field="*{courseName}" placeholder="Enter email"/></p>
+                <input type="text" class="form-control" id="courseNameID" th:field="*{courseName}" placeholder="Enter email"/></p>
             <p>
                 <label for="startDateID"><span class="glyphicon glyphicon-book"></span> Start date</label>
                 <input type="text" class="form-control" id="startDateID"  th:field="*{startDate}" placeholder="Enter University Name"/></p>
@@ -140,7 +146,7 @@
                 <label for="uniKeyID"><span class="glyphicon glyphicon-user"></span> University Key</label>
                 <input type="text" class="form-control" id="uniKeyID"  th:field="*{universityKey}" placeholder="Enter Aministrator Name"/></p>
         </div>
-        <button type="button" value="submit" id="publishButton" class="btn btn-default btn-success btn-block" ><span class="glyphicon glyphicon-check"></span> Register</button>
+        <button type="submit" value="Submit" id="publishButton" class="btn btn-default btn-success btn-block" ><span class="glyphicon glyphicon-check"></span> Publish</button>
     </form>
   
 
@@ -168,8 +174,11 @@
     </div>
 </div>
 
-<script src="js/registrationFormHandler.js"></script>
 
+<script src="js/jquery-.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/anim.js"></script>
+<script src="js/publishFormValidator.js"></script>
 </body>
 
 

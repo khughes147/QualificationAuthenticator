@@ -17,7 +17,7 @@ import java.util.*;
 @Controller
 public class RegistrationController {
 
-    private ArrayList<University> universityArrayList = new ArrayList<University>();
+    private static ArrayList<University> universityArrayList = new ArrayList<University>();
     private ArrayList<University> unverifiedUniversityArrayList = new ArrayList<University>();
 
     public ArrayList<University> getUniversityArrayList() {
