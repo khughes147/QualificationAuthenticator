@@ -1,4 +1,13 @@
 $(document).ready(function(){
+        $('#startDateID').datepicker({
+            format: "dd/mm/yyyy"
+        });
+        $('#endDateID').datepicker({
+            format: "dd/mm/yyyy"
+        });
+        document.getElementById("endDateID").readOnly = true;
+        document.getElementById("startDateID").readOnly = true;
+
 //Write on Form
 	$('#studentNameID').blur(function(event) {
 		var input=$(this);
@@ -30,15 +39,8 @@ $(document).ready(function(){
 		$('p.studentIdErrorMessage').remove(),
 		$('#studentID').after('<p class="studentIdErrorMessage">Student ID can\'t be empty.</p>');}
 	});
-		$('#uniNameID').blur(function(event) {
-    		var input=$(this);
-    		var is_name=input.val();
-    		if(is_name){input.removeClass("is-invalid").addClass("is-valid"),
-    		$('p.uniNameErrorMessage').remove();}
-    		else{input.removeClass("is-valid").addClass("is-invalid"),
-    		$('p.uniErrorMessage').remove(),
-    		$('#uniNameErrorMessage').after('<p class="uniNameErrorMessage">University name can\'t be empty.</p>');}
-    	});
+
+
 
     	$('#courseNameID').blur(function(event) {
     		var input=$(this);
@@ -51,21 +53,13 @@ $(document).ready(function(){
     	});
     	$('#startDateID').blur(function(event) {
     		var input=$(this);
-    		var message=$(this).val();
-    		if(message){input.removeClass("is-invalid").addClass("is-valid"),
-    		$('p.startDateErrorMessage').remove();}
-    		else{input.removeClass("is-valid").addClass("is-invalid"),
-    		$('p.startDateErrorMessage').remove(),
-    		$('#startDateID').after('<p class="startDateErrorMessage">Invalid date.</p>');}
+    		input.addClass("is-valid");
+
     	});
     	$('#endDateID').blur(function(event) {
     		var input=$(this);
-    		var message=$(this).val();
-    		if(message){input.removeClass("is-invalid").addClass("is-valid"),
-    		$('p.endDateErrorMessage').remove();}
-    		else{input.removeClass("is-valid").addClass("is-invalid"),
-    		$('p.endDateErrorMessage').remove(),
-    		$('#endDateID').after('<p class="endDateErrorMessage">Invalid date.</p>');}
+    		input.addClass("is-valid");
+
     	});
     	$('#classificationID').blur(function(event) {
     		var input=$(this);
@@ -91,7 +85,6 @@ $("#publishButton").click(function(event){
     if ($('#studentNameID').hasClass('form-control is-valid')){
         if ($('#studentEmail').hasClass('form-control is-valid')){
             if ($('#studentID').hasClass('form-control is-valid')){
-                if ($('#uniNameID').hasClass('form-control is-valid')){
                     if ($('#courseNameID').hasClass('form-control is-valid')){
                         if ($('#startDateID').hasClass('form-control is-valid')){
                             if ($('#endDateID').hasClass('form-control is-valid')){
@@ -131,9 +124,5 @@ $("#publishButton").click(function(event){
         alert("Please ensure all fields are completed correctly."),
         event.stopPropagation();
         event.preventDefault();}
-    }else{
-    alert("Please ensure all fields are completed correctly."),
-    event.stopPropagation();
-    event.preventDefault();}
 });
 });

@@ -627,6 +627,14 @@ legend {
 	display:block;
 }
 
+#startDateID{
+background-color: white !important;
+}
+
+#endDateID{
+background-color: white !important;
+}
+
 .adminErrorMessage{
 
 font-size:14px;
