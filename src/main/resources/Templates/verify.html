@@ -110,8 +110,19 @@
     </div>
 </div>
 
+<h3 id="publishHeader">Verifying an applicant's qualification</h3>
+<p id="publishMessage">Enter an applicant's unique key below and we'll check for an Ethereum Smart Contract</p>
+<div  class="container" id="verifyFormContainer">
 
-
+    <form role="form" id="verifyForm" action="#" th:action="@{/verifySubmission}" method="post">
+        <div class="form-group">
+            <p>
+                <label for="applicantKey"><span class="glyphicon glyphicon-user"></span> Applicant key</label>
+                <input type="text" class="form-control" id="applicantKey" name="applicantKey" placeholder="Enter applicant's key"/></p>
+        </div>
+        <button type="submit" value="Submit" id="verifyButton" class="btn btn-default btn-success btn-block"><span class="glyphicon glyphicon-check"></span> Verify</button>
+    </form>
+</div>
 <!-- FOOTER =============================-->
 <div class="footer text-center">
     <div class="container">

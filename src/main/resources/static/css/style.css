@@ -48,6 +48,14 @@ color: #d30202;
 padding-top:40px;
 padding-bottom: 75px;
 width: 60%;
+
+}
+
+#verifyFormContainer{
+
+padding-top:50px;
+padding-bottom: 75px;
+width: 30%;
 }
 
 #publishHeader{

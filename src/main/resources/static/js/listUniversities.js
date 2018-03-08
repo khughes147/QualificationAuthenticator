@@ -60,6 +60,7 @@ function listUnverifiedUniversities()
 
         }
         });
+
 }
 
 function removeUni(){
@@ -86,6 +87,8 @@ $.ajax(
             }
 
         });
+
+
 
 }
 
