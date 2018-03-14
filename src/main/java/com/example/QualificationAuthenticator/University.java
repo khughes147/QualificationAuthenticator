@@ -12,7 +12,12 @@ public class University {
     private String uniName;
     private String adminName;
     private String key;
+    private String contactNumber;
     private boolean verified = false;
+
+    public String getContactNumber() { return contactNumber; }
+
+    public void setContactNumber(String contactNumber) { this.contactNumber = contactNumber; }
 
     public String getEmail() { return email; }
 

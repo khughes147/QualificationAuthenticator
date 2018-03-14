@@ -83,8 +83,11 @@
                             <label for="uniID"><span class="glyphicon glyphicon-book"></span> University Name</label>
                             <input type="text" class="form-control" id="uniID"  th:field="*{uniName}" placeholder="Enter University Name"/></p>
                         <p>
-                            <label for="adminID"><span class="glyphicon glyphicon-user"></span> Administrator name</label>
-                            <input type="text" class="form-control" id="adminID"  th:field="*{adminName}" placeholder="Enter Aministrator Name"/></p>
+                            <label for="adminID"><span class="glyphicon glyphicon-user"></span> University contact name</label>
+                            <input type="text" class="form-control" id="adminID"  th:field="*{adminName}" placeholder="Enter contact name"/></p>
+                        <p>
+                            <label for="adminContactNumber"><span class="glyphicon glyphicon-earphone"></span> Contact Number</label>
+                            <input type="number" class="form-control" id="adminContactNumber"  th:field="*{contactNumber}" placeholder="Enter contact number"/></p>
                     </div>
                     <button type="button" id="submitButton" class="btn btn-default btn-success btn-block" data-dismiss="modal" ><span class="glyphicon glyphicon-check"></span> Register</button>
                 </form>

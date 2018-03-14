@@ -75,6 +75,15 @@ $(document).ready(function(){
 		$('p.adminErrorMessage').remove(),
 		$('#adminID').after('<p class="adminErrorMessage">Admin name can\'t be empty.</p>');}
 	});
+	$('#adminContactNumber').blur(function(event) {
+		var input=$(this);
+		var message=$(this).val();
+		if(message){input.removeClass("is-invalid").addClass("is-valid"),
+		$('p.numberErrorMessage').remove();}
+		else{input.removeClass("is-valid").addClass("is-invalid"),
+		$('p.numberErrorMessage').remove(),
+		$('#adminContactNumber').after('<p class="numberErrorMessage">Contact number can\'t be empty.</p>');}
+	});
 
 //submit form validation
 $("#submitButton").click(function(event){

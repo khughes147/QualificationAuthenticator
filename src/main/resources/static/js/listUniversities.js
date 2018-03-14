@@ -10,7 +10,7 @@ function listUniversities()
             statusCode: {
                   200: function( data ) {
                   $("#uniListTable").show();
-                   var output="<table id='uniListTable'><thead><th class='myTableHeader'>Admin Email</th><th class='myTableHeader'>University</th><th class='myTableHeader'>Admin Name</th><th class='myTableHeader'>Unique Key</th><th>Verified Status</th></thead><tbody>";
+                   var output="<table id='uniListTable'><thead><th class='myTableHeader'>Admin Email</th><th class='myTableHeader'>University</th><th class='myTableHeader'>Admin Name</th><th class='myTableHeader'>Unique Key</th><th class='myTableHeader'>Contact Number</th><th>Verified Status</th></thead><tbody>";
                                     $.each(data, function(i, item){
                                        output += "<tr class='table-row'>";
                                        $.each(item, function(p, value){
@@ -42,7 +42,7 @@ function listUnverifiedUniversities()
             statusCode: {
                   200: function( data ) {
                   $("#uniListTable").show();
-                   var output="<h5 id='removeUniHeader'> Universities awaiting verification </h5> <table id='uniListTable'><thead><th class='myTableHeader'>Admin Email</th><th class='myTableHeader'>University</th><th class='myTableHeader'>Admin Name</th><th class='myTableHeader'>Unique Key</th><th>Verified Status</th></thead><tbody>";
+                   var output="<h5 id='removeUniHeader'> Universities awaiting verification </h5> <table id='uniListTable'><thead><th class='myTableHeader'>Admin Email</th><th class='myTableHeader'>University</th><th class='myTableHeader'>Admin Name</th><th class='myTableHeader'>Unique Key</th><th class='myTableHeader'>Contact Number</th><th>Verified Status</th></thead><tbody>";
                                     $.each(data, function(i, item){
                                        output += "<tr class='table-row'>";
                                        $.each(item, function(p, value){
