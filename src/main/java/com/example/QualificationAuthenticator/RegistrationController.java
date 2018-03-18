@@ -8,10 +8,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.web3j.crypto.CipherException;
+import org.web3j.crypto.Credentials;
+import org.web3j.crypto.WalletUtils;
+import org.web3j.protocol.core.DefaultBlockParameterName;
 
+import static com.example.QualificationAuthenticator.QualificationAuthenticatorApplication.web3;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.*;
+
+
 
 
 @Controller
@@ -23,7 +35,7 @@ public class RegistrationController {
     public ArrayList<University> getUniversityArrayList() {
         return universityArrayList;
     }
-
+    private Credentials creds;
 
     @Autowired
     EmailService regServ;
@@ -37,17 +49,17 @@ public class RegistrationController {
         return "index";
     }
 
-    @PostMapping("/addUniversity")
-    public String addUniversity(@ModelAttribute University university, BindingResult result)
-    {
-        university.generateKey();
-        university.setVerified(true);
+  //  @PostMapping("/addUniversity")
+  //  public String addUniversity(@ModelAttribute University university, BindingResult result)
+  //  {
+   //     university.generateKey();
+   //     university.setVerified(true);
         //regServ.sendSimpleMessage(university.getEmail(), "Registration Success!!", "Hi " + university.getAdminName() + ",\n\nThis email is to confirm that " + university.getUniName() +  " has successfully been added to the Authenti-Q service.\n\nMany thanks,\n\nAuthenti-Q" );
-        universityArrayList.add(university);
+    //    universityArrayList.add(university);
 
 
-        return "admin";
-    }
+    //    return "admin";
+   // }
 
     @GetMapping(value = "/listUniversities")
     public ResponseEntity<List<University>> listAllUsers() {
@@ -109,6 +121,20 @@ public class RegistrationController {
                 universityArrayList.add(unverifiedUniversityArrayList.get(i));
                 //regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Registration Success!!", "Hi " + university.getAdminName() + ",\n\nThis email is to confirm that " + university.getUniName() +  " has successfully been added to the Authenti-Q service.\n\nMany thanks,\n\nAuthenti-Q" );
 
+                try {
+                    WalletUtils.generateFullNewWalletFile(universityArrayList.get(i).getKey(), new File("C:/Users/Kieran/documents/EthereumProjectChain/data/keystore"));
+                    creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Kieran/documents/EthereumProjectChain/data/keystore");
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                } catch (NoSuchProviderException e) {
+                    e.printStackTrace();
+                } catch (InvalidAlgorithmParameterException e) { 
+                    e.printStackTrace();
+                } catch (CipherException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
         }

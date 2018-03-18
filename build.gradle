@@ -36,7 +36,7 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	compile("org.springframework.boot:spring-boot-starter-security")
 	compile("org.springframework.boot:spring-boot-starter-mail")
-	compile("org.web3j:core1.0.9")
+	compile("org.web3j:core:3.3.1")
 
 
 }
