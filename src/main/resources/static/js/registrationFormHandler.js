@@ -10,17 +10,19 @@ jQuery(document).ready(function ($) {
 });
 
 $('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').focus()
+  $('#myInput').focus();
 })
 
 $('myModal').show().on('hidden', function() {
-    $('myModal').modal('hide')
-    $('myModal').removeData('bs.modal');
+
+    $('myModal').modal('hide');
+    $('emailForm').get(0).reset()
 });
 
 function sendEmail()
 {
 
+$('#SuccessModal').modal('show')
 
         $.ajax(
         {
@@ -32,7 +34,7 @@ function sendEmail()
             success: function(data)
             {
 
-                 $('#SuccessModal').modal('show')
+
 
             },
             error: function(data)

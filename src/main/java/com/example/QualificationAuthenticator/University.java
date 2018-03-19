@@ -11,9 +11,10 @@ public class University {
     private String email;
     private String uniName;
     private String adminName;
-    private String key;
     private String contactNumber;
     private boolean verified = false;
+    private String key;
+    private String privateKey;
 
     public String getContactNumber() { return contactNumber; }
 
@@ -49,21 +50,27 @@ public class University {
 
     public void setVerified(Boolean verified) { this.verified = verified;}
 
+    public String getPrivateKey() { return privateKey; }
+
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+    }
+
     public void generateKey(){
+
+        privateKey = UUID.randomUUID().toString();
 
         try{
             MessageDigest salt = MessageDigest.getInstance("SHA-256");
-            salt.update(UUID.randomUUID().toString().getBytes("UTF-8"));
+            salt.update(privateKey.getBytes("UTF-8"));
             String digest = bytesToHex(salt.digest());
             this.key = digest;
         }catch(Exception noSuchAlgorithmException){
         }
 
-
-
     }
 
-    private static String bytesToHex(byte[] bytes) {
+    public static String bytesToHex(byte[] bytes) {
         final char[] hexArray = { '0', '1', '2', '3', '4', '5', '6', '7', '8',
                 '9', 'a', 'b', 'c', 'd', 'e', 'f' };
         char[] hexChars = new char[bytes.length * 2];

@@ -44,22 +44,11 @@ public class RegistrationController {
     public String emailSubmission(@ModelAttribute University university, BindingResult result)
     {
         unverifiedUniversityArrayList.add(university);
-       // regServ.sendSimpleMessage(university.getEmail(), "Registration in Progress", "Hi " + university.getAdminName() + ",\n\nThis email is to confirm that we are checking your registration as an Admin for " + university.getUniName() +  " and we will get back to you as soon as possible.\n\nMany thanks,\n\nAuthenti-Q" );
-       // regServ.sendSimpleMessage("authentiq.register@gmail.com", "New registration", "Please investigate the following registration:\n \nAdministrator name: " + university.getAdminName() + "\nUniversity name: " + university.getUniName() + "\nAdmin email: " + university.getEmail() + "\n\nIf authentic, please login to admin system and add this university." );
+        regServ.sendSimpleMessage(university.getEmail(), "Registration in Progress", "Hi " + university.getAdminName() + ",\n\nThis email is to confirm that we are checking your registration as an Admin for " + university.getUniName() +  " and we will get back to you as soon as possible.\n\nMany thanks,\n\nAuthenti-Q" );
+        regServ.sendSimpleMessage("authentiq.register@gmail.com", "New registration", "Please investigate the following registration:\n \nAdministrator name: " + university.getAdminName() + "\nUniversity name: " + university.getUniName() + "\nAdmin email: " + university.getEmail() + "\n\nIf authentic, please login to admin system and add this university." );
         return "index";
     }
 
-  //  @PostMapping("/addUniversity")
-  //  public String addUniversity(@ModelAttribute University university, BindingResult result)
-  //  {
-   //     university.generateKey();
-   //     university.setVerified(true);
-        //regServ.sendSimpleMessage(university.getEmail(), "Registration Success!!", "Hi " + university.getAdminName() + ",\n\nThis email is to confirm that " + university.getUniName() +  " has successfully been added to the Authenti-Q service.\n\nMany thanks,\n\nAuthenti-Q" );
-    //    universityArrayList.add(university);
-
-
-    //    return "admin";
-   // }
 
     @GetMapping(value = "/listUniversities")
     public ResponseEntity<List<University>> listAllUsers() {
@@ -118,17 +107,18 @@ public class RegistrationController {
             if(unverifiedUniversityArrayList.get(i).getEmail().equals(email)){
                 unverifiedUniversityArrayList.get(i).setVerified(true);
                 unverifiedUniversityArrayList.get(i).generateKey();
+                regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Registration Success!!", "Hi " + unverifiedUniversityArrayList.get(i).getAdminName() + ",\n\nThis email is to confirm that " + unverifiedUniversityArrayList.get(i).getUniName() +  " has successfully been added to the Authenti-Q service.\n Your private key is: " + unverifiedUniversityArrayList.get(i).getPrivateKey() + ". Please keep this secure as you will need it to upload records. \n\nMany thanks,\n\nAuthenti-Q" );
+                unverifiedUniversityArrayList.get(i).setPrivateKey("null");
                 universityArrayList.add(unverifiedUniversityArrayList.get(i));
-                //regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Registration Success!!", "Hi " + university.getAdminName() + ",\n\nThis email is to confirm that " + university.getUniName() +  " has successfully been added to the Authenti-Q service.\n\nMany thanks,\n\nAuthenti-Q" );
-
                 try {
                     WalletUtils.generateFullNewWalletFile(universityArrayList.get(i).getKey(), new File("C:/Users/Kieran/documents/EthereumProjectChain/data/keystore"));
+
                     creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Kieran/documents/EthereumProjectChain/data/keystore");
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 } catch (NoSuchProviderException e) {
                     e.printStackTrace();
-                } catch (InvalidAlgorithmParameterException e) { 
+                } catch (InvalidAlgorithmParameterException e) {
                     e.printStackTrace();
                 } catch (CipherException e) {
                     e.printStackTrace();
@@ -149,7 +139,7 @@ public class RegistrationController {
 
             if(unverifiedUniversityArrayList.get(i).getEmail().equals(email)){
                 unverifiedUniversityArrayList.remove(i);
-                //regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Publishing privileges removed", "Hi " + unverifiedUniversityArrayList.get(i).getAdminName() + ",\n\nThis email is to confirm that " + unverifiedUniversityArrayList.get(i).getUniName() +  " has been removed from the Authenti-Q service.\n\nMany thanks,\n\nAuthenti-Q" );
+                regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Publishing privileges removed", "Hi " + unverifiedUniversityArrayList.get(i).getAdminName() + ",\n\nThis email is to confirm that " + unverifiedUniversityArrayList.get(i).getUniName() +  " has been removed from the Authenti-Q service.\n\nMany thanks,\n\nAuthenti-Q" );
 
             }
 

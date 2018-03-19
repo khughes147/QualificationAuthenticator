@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.MessageDigest;
 import java.util.*;
+
+import static com.example.QualificationAuthenticator.University.bytesToHex;
 
 
 @Controller
@@ -22,9 +25,19 @@ public class recordController {
     public String publish(@ModelAttribute StudentRecord record, BindingResult result, Model model)
     {
         RegistrationController regCon = new RegistrationController();
+        String digest = "";
+        try{
+            MessageDigest salt = MessageDigest.getInstance("SHA-256");
+            salt.update(record.getUniversityKey().getBytes("UTF-8"));
+            digest = bytesToHex(salt.digest());
+        }catch(Exception noSuchAlgorithmException){
+        }
+
+
+
         ArrayList<University> universityArrayList = regCon.getUniversityArrayList();
         for(int i=0; i<universityArrayList.size(); i++){
-            if (universityArrayList.get(i).getKey().equals(record.getUniversityKey())){
+            if (universityArrayList.get(i).getKey().equals(digest)){
                 model.addAttribute("successMessage", "Successfully uploaded record!");
             }else{
                 model.addAttribute("errorMessage", "Invalid University Key!");
