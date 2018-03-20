@@ -107,7 +107,6 @@ public class RegistrationController {
             if(unverifiedUniversityArrayList.get(i).getEmail().equals(email)){
                 unverifiedUniversityArrayList.get(i).setVerified(true);
                 unverifiedUniversityArrayList.get(i).generateKey();
-                unverifiedUniversityArrayList.get(i).setPrivateKey("null");
                 universityArrayList.add(unverifiedUniversityArrayList.get(i));
                 try {
                     WalletUtils.generateFullNewWalletFile(universityArrayList.get(i).getKey(), new File("C:/Users/khugh/documents/EthereumProjectChain/data/keystore"));
@@ -125,6 +124,11 @@ public class RegistrationController {
                     e.printStackTrace();
                 }
                 regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Registration Success!!", "Hi " + unverifiedUniversityArrayList.get(i).getAdminName() + ",\n\nThis email is to confirm that " + unverifiedUniversityArrayList.get(i).getUniName() +  " has successfully been added to the Authenti-Q service.\n Your private key is: " + unverifiedUniversityArrayList.get(i).getPrivateKey() + ". Please keep this secure as you will need it to upload records. \n\nMany thanks,\n\nAuthenti-Q" );
+
+                for(int y=0; i<universityArrayList.size(); i++){
+                    universityArrayList.get(y).setPrivateKey("null");
+                }
+
             }
 
         }

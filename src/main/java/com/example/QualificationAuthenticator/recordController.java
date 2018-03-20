@@ -57,7 +57,7 @@ public class recordController {
         for(int i=0; i<universityArrayList.size(); i++){
             if (universityArrayList.get(i).getKey().equals(digest)){
                 try {
-                    Credentials creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/" + walletName);
+                     creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/" + walletName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (CipherException e) {
@@ -69,7 +69,7 @@ public class recordController {
                         Web3j web3j = Web3j.build(new HttpService());
 
                         try {
-                            com.example.QualificationAuthenticator.Credentials contract = com.example.QualificationAuthenticator.Credentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, "Kieran", "myEmail", "uuj", "compSci", "date", "date2   ", "1st").send();
+                            StudnetCredentials contract = StudnetCredentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, "Kieran", "myEmail", "uuj", "compSci", "date", "date2 ", "1st").send();
 
                         } catch (Exception e) {
                             e.printStackTrace();
