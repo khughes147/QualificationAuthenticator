@@ -24,7 +24,7 @@ contract credentials is qualification {
 
 
     /* This runs when the contract is executed */
-    function qualification(string _name, string _email, string _university, string _course, string _start, string _end, string _classification) public {
+    function credentials(string _name, string _email, string _university, string _course, string _start, string _end, string _classification) public {
         studentName = _name;
         studentEmail = _email;
         studentUniversity = _university;

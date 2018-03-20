@@ -1,4 +1,5 @@
 package com.example.QualificationAuthenticator;
+//import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -6,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.methods.response.Web3ClientVersion;
+import org.web3j.protocol.http.HttpService;
 import org.web3j.tx.Contract;
 import org.web3j.tx.ManagedTransaction;
 
@@ -15,8 +19,9 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
-import static com.example.QualificationAuthenticator.QualificationAuthenticatorApplication.web3;
+//import static com.example.QualificationAuthenticator.QualificationAuthenticatorApplication.web3;
 import static com.example.QualificationAuthenticator.University.bytesToHex;
 
 
@@ -58,14 +63,27 @@ public class recordController {
                 } catch (CipherException e) {
                     e.printStackTrace();
                 }
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Web3j web3j = Web3j.build(new HttpService());
 
+                        try {
+                            com.example.QualificationAuthenticator.Credentials contract = com.example.QualificationAuthenticator.Credentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, record.getStudentName(), record.getStudentEmail(), "uuj", record.getCourseName(), "date", "date2   ", record.getClassification()).send();
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        // Use callback function e.g. publishResult(result)
+                        //return result;
+                    }
+                });
+                t.start();
                 try {
-                    Qualification contract = Qualification.deploy(web3, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT).send();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    t.join();
+                } catch (InterruptedException e) {
+                    System.out.println("thread couldnt finish");
                 }
-
-
                 model.addAttribute("successMessage", "Successfully uploaded record!");
             }else{
                 model.addAttribute("errorMessage", "Invalid University Key!");
