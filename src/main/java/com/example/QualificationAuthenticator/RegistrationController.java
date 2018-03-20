@@ -113,7 +113,7 @@ public class RegistrationController {
                 try {
                     WalletUtils.generateFullNewWalletFile(universityArrayList.get(i).getKey(), new File("C:/Users/Kieran/documents/EthereumProjectChain/data/keystore"));
 
-                    creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Kieran/documents/EthereumProjectChain/data/keystore");
+
                 } catch (NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 } catch (NoSuchProviderException e) {

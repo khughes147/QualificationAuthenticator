@@ -34,8 +34,6 @@ $('#SuccessModal').modal('show')
             success: function(data)
             {
 
-
-
             },
             error: function(data)
             {
