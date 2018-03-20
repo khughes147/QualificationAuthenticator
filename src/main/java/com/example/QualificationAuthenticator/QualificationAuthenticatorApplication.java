@@ -34,7 +34,7 @@ public class QualificationAuthenticatorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(QualificationAuthenticatorApplication.class, args);
 
-		File folder = new File("C:/Users/Kieran/Documents/EthereumProjectChain/data/keystore/");
+		File folder = new File("C:/Users/khugh/Documents/EthereumProjectChain/data/keystore/");
 		File[] listOfFiles = folder.listFiles();
 
 		for (int i = 0; i < listOfFiles.length; i++) {

@@ -44,7 +44,7 @@ public class recordController {
         }catch(Exception noSuchAlgorithmException){
         }
 
-        File folder = new File("C:/Users/Kieran/Documents/EthereumProjectChain/data/keystore/");
+        File folder = new File("C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/");
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -57,7 +57,7 @@ public class recordController {
         for(int i=0; i<universityArrayList.size(); i++){
             if (universityArrayList.get(i).getKey().equals(digest)){
                 try {
-                    Credentials creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Kieran/Documents/EthereumProjectChain/data/keystore/" + walletName);
+                    Credentials creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/" + walletName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (CipherException e) {
