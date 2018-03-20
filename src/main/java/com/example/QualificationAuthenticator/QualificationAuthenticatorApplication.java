@@ -40,6 +40,7 @@ public class QualificationAuthenticatorApplication {
 		for (int i = 0; i < listOfFiles.length; i++) {
 			if (listOfFiles[i].isFile()) {
 				walletName = listOfFiles[i].getName();
+
 			}
 		}
 

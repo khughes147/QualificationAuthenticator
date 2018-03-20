@@ -69,7 +69,7 @@ public class recordController {
                         Web3j web3j = Web3j.build(new HttpService());
 
                         try {
-                            com.example.QualificationAuthenticator.Credentials contract = com.example.QualificationAuthenticator.Credentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, record.getStudentName(), record.getStudentEmail(), "uuj", record.getCourseName(), "date", "date2   ", record.getClassification()).send();
+                            com.example.QualificationAuthenticator.Credentials contract = com.example.QualificationAuthenticator.Credentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, "Kieran", "myEmail", "uuj", "compSci", "date", "date2   ", "1st").send();
 
                         } catch (Exception e) {
                             e.printStackTrace();
