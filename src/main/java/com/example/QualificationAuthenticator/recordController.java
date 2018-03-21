@@ -34,7 +34,7 @@ public class recordController {
     private String returnPage;
     private Credentials creds;
     private String walletName;
-    public StudentCredentials contract;
+    public  static StudentCredentials contract;
 
     @PostMapping("/publishForm")
     public String publish(@ModelAttribute StudentRecord record, BindingResult result, Model model)
@@ -73,7 +73,7 @@ public class recordController {
                         Web3j web3j = Web3j.build(new HttpService());
 
                         try {
-                            contract = StudentCredentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, "Kieran", record.getStudentID(), record.getStudentEmail(), record.getCourseName(), record.getStartDate(), record.getEndDate(), record.getClassification()).send();
+                            contract = StudentCredentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, record.getStudentName(), record.getStudentID(), record.getStudentEmail(), record.getCourseName(), record.getStartDate(), record.getEndDate(), record.getClassification()).send();
                             try {
                                 System.out.println(contract.returnQualification().send());
                             } catch (Exception e) {
@@ -82,7 +82,7 @@ public class recordController {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        
+
                     }
                 });
                 t.start();

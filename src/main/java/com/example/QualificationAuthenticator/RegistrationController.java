@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.web3j.crypto.CipherException;
@@ -41,11 +42,15 @@ public class RegistrationController {
     EmailService regServ;
 
     @PostMapping("/emailSubmission")
-    public String emailSubmission(@ModelAttribute University university, BindingResult result)
+    public String emailSubmission(@ModelAttribute University university, BindingResult result, Model model)
     {
+
         unverifiedUniversityArrayList.add(university);
        // regServ.sendSimpleMessage(university.getEmail(), "Registration in Progress", "Hi " + university.getAdminName() + ",\n\nThis email is to confirm that we are checking your registration as an Admin for " + university.getUniName() +  " and we will get back to you as soon as possible.\n\nMany thanks,\n\nAuthenti-Q" );
         regServ.sendSimpleMessage("authentiq.register@gmail.com", "New registration", "Please investigate the following registration:\n \nAdministrator name: " + university.getAdminName() + "\nUniversity name: " + university.getUniName() + "\nAdmin email: " + university.getEmail() + "\n\nIf authentic, please login to admin system and add this university." );
+        //model.addAttribute("university", new University());
+
+
         return "index";
     }
 

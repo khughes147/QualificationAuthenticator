@@ -16,7 +16,8 @@ $('#myModal').on('shown.bs.modal', function () {
 $('myModal').show().on('hidden', function() {
 
     $('myModal').modal('hide');
-    $('emailForm').get(0).reset()
+    $('emailForm').get(0).reset();
+    $('#uniID').value = "";
 });
 
 function sendEmail()
