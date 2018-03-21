@@ -8,8 +8,11 @@ import org.web3j.crypto.CipherException;
 import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.RemoteCall;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
 import org.web3j.protocol.http.HttpService;
+import org.web3j.tuples.Tuple;
+import org.web3j.tuples.generated.Tuple7;
 import org.web3j.tx.Contract;
 import org.web3j.tx.ManagedTransaction;
 
@@ -31,6 +34,7 @@ public class recordController {
     private String returnPage;
     private Credentials creds;
     private String walletName;
+    public StudentCredentials contract;
 
     @PostMapping("/publishForm")
     public String publish(@ModelAttribute StudentRecord record, BindingResult result, Model model)
@@ -69,13 +73,16 @@ public class recordController {
                         Web3j web3j = Web3j.build(new HttpService());
 
                         try {
-                            StudnetCredentials contract = StudnetCredentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, "Kieran", "myEmail", "uuj", "compSci", "date", "date2 ", "1st").send();
-
+                            contract = StudentCredentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, "Kieran", record.getStudentID(), record.getStudentEmail(), record.getCourseName(), record.getStartDate(), record.getEndDate(), record.getClassification()).send();
+                            try {
+                                System.out.println(contract.returnQualification().send());
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        // Use callback function e.g. publishResult(result)
-                        //return result;
+                        
                     }
                 });
                 t.start();
@@ -89,7 +96,6 @@ public class recordController {
                 model.addAttribute("errorMessage", "Invalid University Key!");
             }
         }
-
 
 
 
