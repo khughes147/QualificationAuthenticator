@@ -51,6 +51,7 @@ public class RegistrationController {
         //model.addAttribute("university", new University());
 
 
+
         return "index";
     }
 

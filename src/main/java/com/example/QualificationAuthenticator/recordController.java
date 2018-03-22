@@ -9,6 +9,7 @@ import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.RemoteCall;
+import org.web3j.protocol.core.methods.response.EthGetTransactionReceipt;
 import org.web3j.protocol.core.methods.response.Web3ClientVersion;
 import org.web3j.protocol.http.HttpService;
 import org.web3j.tuples.Tuple;
@@ -32,9 +33,11 @@ import static com.example.QualificationAuthenticator.University.bytesToHex;
 public class recordController {
 
     private String returnPage;
-    private Credentials creds;
+    public static Credentials creds;
     private String walletName;
     public  static StudentCredentials contract;
+    EmailService deployServ;
+    public static Web3j web3j;
 
     @PostMapping("/publishForm")
     public String publish(@ModelAttribute StudentRecord record, BindingResult result, Model model)
@@ -70,10 +73,11 @@ public class recordController {
                 Thread t = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Web3j web3j = Web3j.build(new HttpService());
+                         web3j = Web3j.build(new HttpService());
 
                         try {
                             contract = StudentCredentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, record.getStudentName(), record.getStudentID(), record.getStudentEmail(), record.getCourseName(), record.getStartDate(), record.getEndDate(), record.getClassification()).send();
+
                             try {
                                 System.out.println(contract.returnQualification().send());
                             } catch (Exception e) {
@@ -91,6 +95,9 @@ public class recordController {
                 } catch (InterruptedException e) {
                     System.out.println("thread couldnt finish");
                 }
+
+                
+                deployServ.sendSimpleMessage(record.getStudentEmail(), "Smart contract deployed", "Hi, " + record.getStudentName() + "\n \nYour degree credentials have been added to the Ethereum blockchain.\n\nYou can now use the following contract address to verify your credentials. We recommend puting it on your CV!\n\nContract address: " + contract.getContractAddress().toString() + "\n\nBest wishes, \n\nAuthenti-Q" );
                 model.addAttribute("successMessage", "Successfully uploaded record!");
             }else{
                 model.addAttribute("errorMessage", "Invalid University Key!");

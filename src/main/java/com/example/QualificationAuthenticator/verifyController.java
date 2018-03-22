@@ -10,7 +10,10 @@ import org.web3j.tuples.generated.Tuple7;
 
 import java.util.ArrayList;
 
+
 import static com.example.QualificationAuthenticator.recordController.contract;
+import static com.example.QualificationAuthenticator.recordController.creds;
+import static com.example.QualificationAuthenticator.recordController.web3j;
 
 @Controller
 public class verifyController {
@@ -21,9 +24,9 @@ public class verifyController {
     @PostMapping("/verifySubmission")
     public String verify(@RequestParam String applicantKey, Model model)
     {
-        System.out.println(applicantKey);
+
         try {
-            retrievedData = contract.returnQualification().send();
+            retrievedData = StudentCredentials.load(applicantKey.toString(), web3j, creds, StudentCredentials.GAS_PRICE, StudentCredentials.GAS_LIMIT).returnQualification().send();
         } catch (Exception e) {
             e.printStackTrace();
         }

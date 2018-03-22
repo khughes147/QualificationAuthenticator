@@ -37,6 +37,13 @@ text-align: center;
 color: #05b20b;
 }
 
+#doubleRegistrationError{
+
+text-align: center;
+color: #d30202;
+
+}
+
 .failedSubmission{
 
 text-align: center;
@@ -63,6 +70,12 @@ width: 30%;
 
 padding-bottom: 75px;
 width: 30%;
+
+}
+
+#retrievedDataContainer h3, #retrievedDataContainer h4{
+
+float: left;
 }
 
 #publishHeader{
