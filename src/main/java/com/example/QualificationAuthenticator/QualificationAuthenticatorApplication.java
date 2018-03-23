@@ -32,16 +32,43 @@ import java.util.concurrent.ExecutionException;
 public class QualificationAuthenticatorApplication {
 
 
-
+    public static Web3j web3j = Web3j.build(new HttpService());
+    public static Credentials mainCreds;
+    private static String walletName;
 
 	public static void main(String[] args) {
 		SpringApplication.run(QualificationAuthenticatorApplication.class, args);
+        try {
+            WalletUtils.generateFullNewWalletFile("ethereum", new File("C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore"));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (CipherException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        File folder = new File("C:/Users/Khugh/Documents/EthereumProjectChain/data/mainKeystore");
+        File[] listOfFiles = folder.listFiles();
+
+        for (int i = 0; i < listOfFiles.length; i++) {
+            if (listOfFiles[i].isFile()) {
+                walletName = listOfFiles[i].getName();
+            }
+        }
+
+        try {
+            mainCreds = WalletUtils.loadCredentials("ethereum", "C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore/" + walletName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (CipherException e) {
+            e.printStackTrace();
+        }
 
 
-
-
-
-
-
-	}
+    }
 }

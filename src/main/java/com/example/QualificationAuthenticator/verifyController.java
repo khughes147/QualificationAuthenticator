@@ -7,13 +7,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.web3j.tuples.generated.Tuple7;
+import static com.example.QualificationAuthenticator.QualificationAuthenticatorApplication.*;
 
 import java.util.ArrayList;
 
 
 import static com.example.QualificationAuthenticator.recordController.contract;
-import static com.example.QualificationAuthenticator.recordController.creds;
-import static com.example.QualificationAuthenticator.recordController.web3j;
+
+
 
 @Controller
 public class verifyController {
@@ -26,7 +27,7 @@ public class verifyController {
     {
 
         try {
-            retrievedData = StudentCredentials.load(applicantKey.toString(), web3j, creds, StudentCredentials.GAS_PRICE, StudentCredentials.GAS_LIMIT).returnQualification().send();
+            retrievedData = StudentCredentials.load(applicantKey, web3j, mainCreds, StudentCredentials.GAS_PRICE, StudentCredentials.GAS_LIMIT).returnQualification().send();
         } catch (Exception e) {
             e.printStackTrace();
         }

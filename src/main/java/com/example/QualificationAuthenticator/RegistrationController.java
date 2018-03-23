@@ -14,7 +14,7 @@ import org.web3j.crypto.Credentials;
 import org.web3j.crypto.WalletUtils;
 import org.web3j.protocol.core.DefaultBlockParameterName;
 
-import static com.example.QualificationAuthenticator.QualificationAuthenticatorApplication.web3;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
@@ -115,7 +115,7 @@ public class RegistrationController {
                 unverifiedUniversityArrayList.get(i).generateKey();
                 universityArrayList.add(unverifiedUniversityArrayList.get(i));
                 try {
-                    WalletUtils.generateFullNewWalletFile(universityArrayList.get(i).getKey(), new File("C:/Users/khugh/documents/EthereumProjectChain/data/keystore"));
+                    WalletUtils.generateFullNewWalletFile(universityArrayList.get(i).getKey(), new File("C:/Users/khugh/documents/EthereumProjectChain/data/keystore/newUsers"));
 
 
                 } catch (NoSuchAlgorithmException e) {

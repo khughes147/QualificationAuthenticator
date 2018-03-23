@@ -1,5 +1,6 @@
 package com.example.QualificationAuthenticator;
 //import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +27,7 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 //import static com.example.QualificationAuthenticator.QualificationAuthenticatorApplication.web3;
+import static com.example.QualificationAuthenticator.QualificationAuthenticatorApplication.web3j;
 import static com.example.QualificationAuthenticator.University.bytesToHex;
 
 
@@ -36,8 +38,10 @@ public class recordController {
     public static Credentials creds;
     private String walletName;
     public  static StudentCredentials contract;
+    private String address = "empty";
+
+    @Autowired
     EmailService deployServ;
-    public static Web3j web3j;
 
     @PostMapping("/publishForm")
     public String publish(@ModelAttribute StudentRecord record, BindingResult result, Model model)
@@ -51,7 +55,7 @@ public class recordController {
         }catch(Exception noSuchAlgorithmException){
         }
 
-        File folder = new File("C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/");
+        File folder = new File("C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/newUsers");
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -64,7 +68,7 @@ public class recordController {
         for(int i=0; i<universityArrayList.size(); i++){
             if (universityArrayList.get(i).getKey().equals(digest)){
                 try {
-                     creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/" + walletName);
+                     creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/newUsers" + walletName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (CipherException e) {
@@ -73,16 +77,17 @@ public class recordController {
                 Thread t = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                         web3j = Web3j.build(new HttpService());
+
 
                         try {
                             contract = StudentCredentials.deploy(web3j, creds, Contract.GAS_PRICE, Contract.GAS_LIMIT, record.getStudentName(), record.getStudentID(), record.getStudentEmail(), record.getCourseName(), record.getStartDate(), record.getEndDate(), record.getClassification()).send();
 
-                            try {
-                                System.out.println(contract.returnQualification().send());
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+                        try {
+                            address = contract.getContractAddress().toString();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -96,8 +101,7 @@ public class recordController {
                     System.out.println("thread couldnt finish");
                 }
 
-                
-                deployServ.sendSimpleMessage(record.getStudentEmail(), "Smart contract deployed", "Hi, " + record.getStudentName() + "\n \nYour degree credentials have been added to the Ethereum blockchain.\n\nYou can now use the following contract address to verify your credentials. We recommend puting it on your CV!\n\nContract address: " + contract.getContractAddress().toString() + "\n\nBest wishes, \n\nAuthenti-Q" );
+                deployServ.sendSimpleMessage(record.getStudentEmail(), "Smart contract deployed", "Hi, " + record.getStudentName() + "\n \nYour degree credentials have been added to the Ethereum blockchain.\n\nYou can now use the following contract address to verify your credentials. We recommend puting it on your CV!\n\nContract address: " + address + "\n\nBest wishes, \n\nAuthenti-Q" );
                 model.addAttribute("successMessage", "Successfully uploaded record!");
             }else{
                 model.addAttribute("errorMessage", "Invalid University Key!");
