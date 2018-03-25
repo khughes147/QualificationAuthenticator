@@ -23,7 +23,7 @@ $('myModal').show().on('hidden', function() {
 function sendEmail()
 {
 
-$('#SuccessModal').modal('show')
+
 
         $.ajax(
         {
@@ -34,11 +34,11 @@ $('#SuccessModal').modal('show')
 
             success: function(data)
             {
-
+                $('#SuccessModal').modal('show')
             },
             error: function(data)
             {
-
+                $('#ErrorModal').modal('show')
             }
 
         });

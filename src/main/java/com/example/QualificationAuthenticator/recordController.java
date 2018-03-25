@@ -55,7 +55,7 @@ public class recordController {
         }catch(Exception noSuchAlgorithmException){
         }
 
-        File folder = new File("C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/newUsers");
+        File folder = new File("C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore");
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -68,7 +68,7 @@ public class recordController {
         for(int i=0; i<universityArrayList.size(); i++){
             if (universityArrayList.get(i).getKey().equals(digest)){
                 try {
-                     creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/newUsers" + walletName);
+                     creds = WalletUtils.loadCredentials(universityArrayList.get(i).getKey(), "C:/Users/Khugh/Documents/EthereumProjectChain/data/keystore/" + walletName);
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (CipherException e) {
@@ -101,7 +101,15 @@ public class recordController {
                     System.out.println("thread couldnt finish");
                 }
 
-                deployServ.sendSimpleMessage(record.getStudentEmail(), "Smart contract deployed", "Hi, " + record.getStudentName() + "\n \nYour degree credentials have been added to the Ethereum blockchain.\n\nYou can now use the following contract address to verify your credentials. We recommend puting it on your CV!\n\nContract address: " + address + "\n\nBest wishes, \n\nAuthenti-Q" );
+
+                Thread y = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        deployServ.sendSimpleMessage(record.getStudentEmail(), "Smart contract deployed", "Hi, " + record.getStudentName() + "\n \nYour degree credentials have been added to the Ethereum blockchain.\n\nYou can now use the following contract address to verify your credentials. We recommend puting it on your CV!\n\nContract address: " + address + "\n\nBest wishes, \n\nAuthenti-Q" );
+                        }
+                });
+                y.start();
                 model.addAttribute("successMessage", "Successfully uploaded record!");
             }else{
                 model.addAttribute("errorMessage", "Invalid University Key!");
