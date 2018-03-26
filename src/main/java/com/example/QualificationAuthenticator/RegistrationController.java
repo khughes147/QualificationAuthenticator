@@ -113,12 +113,14 @@ public class RegistrationController {
     @RequestMapping(value = "/verifyUni", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     String addUni(@RequestParam("id") String email) {
-
+    String key;
         for(int i=0; i<unverifiedUniversityArrayList.size(); i++){
 
             if(unverifiedUniversityArrayList.get(i).getEmail().equals(email)){
                 unverifiedUniversityArrayList.get(i).setVerified(true);
                 unverifiedUniversityArrayList.get(i).generateKey();
+                key = unverifiedUniversityArrayList.get(i).getPrivateKey();
+                unverifiedUniversityArrayList.get(i).setPrivateKey("Null");
                 universityArrayList.add(unverifiedUniversityArrayList.get(i));
                 try {
                     WalletUtils.generateFullNewWalletFile(universityArrayList.get(i).getKey(), new File("C:/Users/khugh/documents/EthereumProjectChain/data/keystore"));
@@ -135,15 +137,14 @@ public class RegistrationController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Registration Success!!", "Hi " + unverifiedUniversityArrayList.get(i).getAdminName() + ",\n\nThis email is to confirm that " + unverifiedUniversityArrayList.get(i).getUniName() +  " has successfully been added to the Authenti-Q service.\n Your private key is: " + unverifiedUniversityArrayList.get(i).getPrivateKey() + ". Please keep this secure as you will need it to upload records. \n\nMany thanks,\n\nAuthenti-Q" );
+                regServ.sendSimpleMessage(unverifiedUniversityArrayList.get(i).getEmail(), "Registration Success!!", "Hi " + unverifiedUniversityArrayList.get(i).getAdminName() + ",\n\nThis email is to confirm that " + unverifiedUniversityArrayList.get(i).getUniName() +  " has successfully been added to the Authenti-Q service.\n Your private key is: " + key + ". Please keep this secure as you will need it to upload records. \n\nMany thanks,\n\nAuthenti-Q" );
 
-                for(int y=0; i<universityArrayList.size(); i++){
-                    universityArrayList.get(y).setPrivateKey("null");
-                }
+
 
             }
 
         }
+        
         return "admin";
     }
 
