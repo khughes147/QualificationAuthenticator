@@ -144,7 +144,7 @@ public class RegistrationController {
             }
 
         }
-        
+
         return "admin";
     }
 
