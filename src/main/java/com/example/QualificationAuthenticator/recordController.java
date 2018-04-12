@@ -34,7 +34,7 @@ import static com.example.QualificationAuthenticator.University.bytesToHex;
 @Controller
 public class recordController {
 
-    private String returnPage;
+
     public static Credentials creds;
     private String walletName;
     public  static StudentCredentials contract;

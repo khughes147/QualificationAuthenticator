@@ -38,6 +38,8 @@ public class QualificationAuthenticatorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(QualificationAuthenticatorApplication.class, args);
+        File dir = new File("C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore");
+        dir.mkdir();
         try {
             WalletUtils.generateFullNewWalletFile("ethereum", new File("C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore"));
         } catch (NoSuchAlgorithmException e) {

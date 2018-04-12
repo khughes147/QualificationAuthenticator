@@ -19,7 +19,7 @@ import static com.example.QualificationAuthenticator.recordController.contract;
 @Controller
 public class verifyController {
 
-    private String returnPage;
+
     private Tuple7 retrievedData;
 
     @PostMapping("/verifySubmission")
