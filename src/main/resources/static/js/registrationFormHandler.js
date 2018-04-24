@@ -44,6 +44,30 @@ function sendEmail()
         });
 }
 
+function sendReset()
+{
+
+
+
+        $.ajax(
+        {
+            type: "POST",
+            data: $("#resetForm").serialize(),
+            cache: false,
+            url: "/resetKey",
+
+            success: function(data)
+            {
+                $('#goodResetModal').modal('show')
+            },
+            error: function(data)
+            {
+                $('#resetErrorModal').modal('show')
+            }
+
+        });
+}
+
 $(document).ready(function(){
 //Write on Form
 	$('#uniID').blur(function(event) {
@@ -110,4 +134,9 @@ $("#submitButton").click(function(event){
     event.preventDefault();};
 
 });
+
+$("#submitResetButton").click(function(event){
+	sendReset();
+	});
+
 });

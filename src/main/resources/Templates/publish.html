@@ -93,6 +93,40 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="myResetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="resetModalLabel">Reset Private Key</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Please enter your email address and the last 3 digits of your contact number below.
+                </p>
+                <p class="failedSubmission" th:text="${resetErrorMessage}"></p>
+                <form role="form" id="resetForm" action="#" th:action="@{/resetKey}" th:object="${university}" method="post">
+                    <div class="form-group">
+
+
+                        <p>
+                            <label for="emailID"><span class="glyphicon glyphicon-envelope"></span> Email</label>
+                            <input type="email" class="form-control" id="emailResetID" th:field="*{email}" placeholder="Enter email"/></p>
+                        <p>
+                            <label for="uniID"><span class="glyphicon glyphicon-book"></span> Number verification</label>
+                            <input type="text" class="form-control" id="uniResetID"  th:field="*{contactNumber}" placeholder="Enter last 3 digits of contact number"/></p>
+
+                    </div>
+                    <button type="button" id="submitResetButton" class="btn btn-default btn-success btn-block" data-dismiss="modal"><span class="glyphicon glyphicon-check"></span> Reset</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Bootstrap Modal -->
 <div class="modal fade" id="SuccessModal" role="dialog">
     <div class="modal-dialog">
@@ -107,6 +141,47 @@
                 <p id="status"></p>
                 <p th:text=" 'We need to investigate the authenticity of your University.'"/>
                 <p th:text=" 'You will recieve an email regarding the succss of your registration as soon as possible.'"/>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="goodResetModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Bootstrap Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="resetTitle" class="modal-title">Success</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="resetStatus"></p>
+                <p th:text=" 'Key successfully reset'"/>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="resetErrorModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Bootstrap Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="resetErrortitle" class="modal-title">Error</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p id="resetErrorstatus"></p>
+                <p th:text=" 'Could not authenticate email and verification digits'"/>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -173,9 +248,11 @@
         </div>
         <button type="submit" value="Submit" id="publishButton" class="btn btn-default btn-success btn-block" ><span class="glyphicon glyphicon-check"></span> Publish</button>
     </form>
-  
-
 </div>
+<div class="container" id="resetButtonContainer">
+<a  class="resetButton" href="#" data-toggle="modal" data-target="#myResetModal">Forgot/Lost private key?</a>
+</div>
+
 
 
 <!-- FOOTER =============================-->

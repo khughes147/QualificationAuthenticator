@@ -35,7 +35,7 @@ public class RegistrationController {
         return universityArrayList;
     }
     private Credentials creds;
-
+    private String resetKey;
     @Autowired
     EmailService regServ;
 
@@ -172,6 +172,48 @@ public class RegistrationController {
 
         }
         return "admin";
+    }
+
+    @PostMapping("/resetKey")
+    public ResponseEntity resetSubmission(@ModelAttribute University university, BindingResult result, Model model)
+    {
+
+
+
+
+        Thread resetThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                regServ.sendSimpleMessage(university.getEmail(), "Private key reset", "Hi,\n\nThis email is to confirm that your private key has been reset.\n\nYour new key is: " + resetKey + ". \n\nPlease keep this key secure. Reset it immediately if lost or compromised.\n\nMany thanks,\n\nAuthenti-Q" );
+            }
+        });
+
+
+    for(int i=0; i<universityArrayList.size(); i++){
+
+
+        if(universityArrayList.get(i).getEmail().equals(university.getEmail())){
+
+                String correctDigits = universityArrayList.get(i).getContactNumber().substring(universityArrayList.get(i).getContactNumber().length()-3);
+
+                if(university.getContactNumber().equals(correctDigits)){
+
+                    universityArrayList.get(i).generateKey();
+                    resetKey = universityArrayList.get(i).getPrivateKey();
+                    universityArrayList.get(i).setPrivateKey("null");
+                    resetThread.start();
+                } else{
+
+                    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+                }
+        }else{
+
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+             }
+
+        }
+        return new ResponseEntity(HttpStatus.OK);
     }
 
 }
