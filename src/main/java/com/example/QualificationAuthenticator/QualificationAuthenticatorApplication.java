@@ -38,10 +38,10 @@ public class QualificationAuthenticatorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(QualificationAuthenticatorApplication.class, args);
-        File dir = new File("C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore");
+        File dir = new File("/root/C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore");
         dir.mkdir();
         try {
-            WalletUtils.generateFullNewWalletFile("ethereum", new File("C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore"));
+            WalletUtils.generateFullNewWalletFile("ethereum", new File("/root/C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore"));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (NoSuchProviderException e) {
@@ -54,7 +54,7 @@ public class QualificationAuthenticatorApplication {
             e.printStackTrace();
         }
 
-        File folder = new File("C:/Users/Khugh/Documents/EthereumProjectChain/data/mainKeystore");
+        File folder = new File("/root/C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore");
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -64,7 +64,7 @@ public class QualificationAuthenticatorApplication {
         }
 
         try {
-            mainCreds = WalletUtils.loadCredentials("ethereum", "C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore/" + walletName);
+            mainCreds = WalletUtils.loadCredentials("ethereum", "/root/C:/Users/khugh/documents/EthereumProjectChain/data/mainKeystore/" + walletName);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (CipherException e) {
