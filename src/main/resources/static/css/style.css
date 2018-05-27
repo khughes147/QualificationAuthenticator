@@ -41,6 +41,57 @@ text-align: center;
 color: #05b20b;
 }
 
+.aboutTable{
+
+padding-top:70px;
+padding-bottom:
+
+}
+
+#AboutTitle{
+
+padding-bottom: 20px;
+
+
+}
+
+
+
+.imageForAbout{
+
+width:33%;
+height: 300px;
+padding: 0px !important;
+
+}
+
+.aboutTableHeaderGray{
+color: #a4a6a8;
+margin-top: 0px !important;
+}
+
+.aboutTableHeaderWhite{
+color: #ffffff;
+margin-top: 0px !important;
+}
+
+.aboutParagraph{
+
+padding-top: 20px;
+
+}
+
+.table{
+
+margin-bottom: 0px !important;
+}
+
+.imageClass{
+
+max-width: 100% !important;
+
+}
+
 #doubleRegistrationError{
 
 text-align: center;
